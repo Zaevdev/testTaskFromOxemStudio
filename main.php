@@ -11,19 +11,30 @@ class Farm
     // Массив с общим количеством продукции
     public $productsAll = [];
 
+    // Количество дней сбора
     public $currentDays = 0;
+
+    // Общее количество дней сбора
     public $allDays = 0;
 
-    public function setCurrentDays($days){
+    // Устанавливаем количество дней сбора
+    public function setCurrentDays($days)
+    {
         $this->currentDays = $days;
     }
-    public function getCurrentDays(){
+    // Получаем количество дней сбора
+    public function getCurrentDays()
+    {
         return $this->currentDays;
     }
-    public function setAllDays($days){
+    // Устанавливаем общее количество дней сбора
+    public function setAllDays($days)
+    {
         $this->allDays += $days;
     }
-    public function getAllDays(){
+    // Получаем общее количество дней сбора
+    public function getAllDays()
+    {
         return $this->allDays;
     }
 
@@ -67,7 +78,7 @@ class Barn extends Farm
     public function printProduct()
     {
         foreach ($this->products as $key => $value) {
-            echo 'За ' . $this->getCurrentDays(). ' days собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            echo 'За ' . $this->getCurrentDays() . ' days собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
         }
     }
 
