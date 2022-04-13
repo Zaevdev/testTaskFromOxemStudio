@@ -126,7 +126,6 @@ abstract class Animal
     // Уникальный номер животного и счётчик
     static int $id = 1;
     public int $animalId = 0;
-    public string $typeFood;
 
     public function __construct()
     {
@@ -136,15 +135,6 @@ abstract class Animal
 
     // Вовращает количество полученной продукции
     abstract public function getProducts();
-
-    /**
-     * @param string $typeFood
-     */
-    public function setTypeFood(string $typeFood): void
-    {
-        $this->typeFood = $typeFood;
-    }
-
 }
 
 // Класс коров
