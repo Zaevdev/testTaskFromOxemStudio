@@ -11,7 +11,21 @@ class Farm
     // Массив с общим количеством продукции
     public $productsAll = [];
 
-    public $collectForDays = 0;
+    public $currentDays = 0;
+    public $allDays = 0;
+
+    public function setCurrentDays($days){
+        $this->currentDays = $days;
+    }
+    public function getCurrentDays(){
+        return $this->currentDays;
+    }
+    public function setAllDays($days){
+        $this->allDays += $days;
+    }
+    public function getAllDays(){
+        return $this->allDays;
+    }
 
     // Добавляем животных массивом
     public function createAnimals(array $animals)
@@ -41,6 +55,8 @@ class Farm
             }
             $this->productsAll["$key"] += $product;
         }
+        $this->setCurrentDays($days);
+        $this->setAllDays($days);
     }
 }
 
@@ -51,7 +67,7 @@ class Barn extends Farm
     public function printProduct()
     {
         foreach ($this->products as $key => $value) {
-            echo 'Собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            echo 'За ' . $this->getCurrentDays(). ' days собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
         }
     }
 
@@ -59,7 +75,7 @@ class Barn extends Farm
     public function printProductAll()
     {
         foreach ($this->productsAll as $key => $value) {
-            echo 'За всё время собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            echo 'За всё время (' . $this->getAllDays() . ' days) продукции от ' . $key . ' : ' . $value . PHP_EOL;
         }
     }
 
