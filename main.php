@@ -3,19 +3,19 @@
 class Farm
 {
     // Массив с животными
-    public $animals = [];
+    public array $animals = [];
 
     // Массив с продукцией
-    public $products = [];
+    public array $products = [];
 
     // Массив с общим количеством продукции
-    public $productsAll = [];
+    public array $productsAll = [];
 
     // Количество дней сбора
-    public $currentDays = 0;
+    public int $currentDays = 0;
 
     // Общее количество дней сбора
-    public $allDays = 0;
+    public int $allDays = 0;
 
     // Устанавливаем количество дней сбора
     public function setCurrentDays($days)
@@ -23,7 +23,7 @@ class Farm
         $this->currentDays = $days;
     }
     // Получаем количество дней сбора
-    public function getCurrentDays()
+    public function getCurrentDays(): int
     {
         return $this->currentDays;
     }
@@ -33,7 +33,7 @@ class Farm
         $this->allDays += $days;
     }
     // Получаем общее количество дней сбора
-    public function getAllDays()
+    public function getAllDays(): int
     {
         return $this->allDays;
     }
@@ -103,8 +103,8 @@ class Barn extends Farm
 abstract class Animal
 {
     // Уникальный номер животного и счётчик
-    static $id = 1;
-    public $animalId = 0;
+    static int $id = 1;
+    public int $animalId = 0;
 
     public function __construct()
     {
@@ -121,7 +121,7 @@ abstract class Animal
 class Cow extends Animal
 {
     // Получаем случайное количество продукции
-    public function getProducts()
+    public function getProducts(): int
     {
         return rand(8, 12);
     }
@@ -131,7 +131,7 @@ class Cow extends Animal
 class Chicken extends Animal
 {
     // Получаем случайное количество продукции
-    public function getProducts()
+    public function getProducts(): int
     {
         return rand(0, 1);
     }
