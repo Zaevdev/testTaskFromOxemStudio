@@ -75,7 +75,7 @@ class Barn extends Farm
     public function printProductAll()
     {
         foreach ($this->productsAll as $key => $value) {
-            echo 'За всё время (' . $this->getAllDays() . ' days) продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            echo 'За всё время (' . $this->getAllDays() . ' days) собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
         }
     }
 
