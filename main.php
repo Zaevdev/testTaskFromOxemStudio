@@ -22,16 +22,19 @@ class Farm
     {
         $this->currentDays = $days;
     }
+
     // Получаем количество дней сбора
     public function getCurrentDays(): int
     {
         return $this->currentDays;
     }
+
     // Устанавливаем общее количество дней сбора
     public function setAllDays($days)
     {
         $this->allDays += $days;
     }
+
     // Получаем общее количество дней сбора
     public function getAllDays(): int
     {
@@ -74,19 +77,37 @@ class Farm
 // Класс хлева
 class Barn extends Farm
 {
-    // Вывод данных о собранной продукции в консоль
+
+    // Вывод данных о текущей собранной продукции в консоль
     public function printProduct()
     {
         foreach ($this->products as $key => $value) {
-            echo 'За ' . $this->getCurrentDays() . ' days собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            switch ($key) {
+                case "Cow":
+                    $typeFood = 'л. молока';
+                    break;
+                case "Chicken":
+                    $typeFood = 'шт. яиц';
+                    break;
+            }
+            echo 'За ' . $this->getCurrentDays() . ' days собрано продукции от ' . $key . ': ' . $value . ' ' . $typeFood . PHP_EOL;
         }
     }
 
-    // Вывод данных о собранной продукции в консоль
+    // Вывод данных о всей собранной продукции в консоль
     public function printProductAll()
     {
+
         foreach ($this->productsAll as $key => $value) {
-            echo 'За всё время (' . $this->getAllDays() . ' days) собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
+            switch ($key) {
+                case "Cow":
+                    $typeFood = 'л. молока';
+                    break;
+                case "Chicken":
+                    $typeFood = 'шт. яиц';
+                    break;
+            }
+            echo 'За всё время (' . $this->getAllDays() . ' days) собрано продукции от ' . $key . ': ' . $value . ' ' . $typeFood . PHP_EOL;
         }
     }
 
@@ -94,7 +115,7 @@ class Barn extends Farm
     public function printAnimalsType()
     {
         foreach ($this->animals as $key => $value) {
-            echo 'Количество ' . $key . ' : ' . count($this->animals["$key"]) . PHP_EOL;
+            echo 'Количество ' . $key . ': ' . count($this->animals["$key"]) . ' шт.' . PHP_EOL;
         }
     }
 }
@@ -105,6 +126,7 @@ abstract class Animal
     // Уникальный номер животного и счётчик
     static int $id = 1;
     public int $animalId = 0;
+    public string $typeFood;
 
     public function __construct()
     {
@@ -114,6 +136,14 @@ abstract class Animal
 
     // Вовращает количество полученной продукции
     abstract public function getProducts();
+
+    /**
+     * @param string $typeFood
+     */
+    public function setTypeFood(string $typeFood): void
+    {
+        $this->typeFood = $typeFood;
+    }
 
 }
 
@@ -147,4 +177,3 @@ $factory->printAnimalsType(); // Снова вывести информацию 
 $factory->collectionProducts(7); // Снова 7 раз (неделю) производим сбор продукции
 $factory->printProduct(); // и выводим результат на экран.
 $factory->printProductAll(); // и выводим общий результат на экран.
-
