@@ -9,7 +9,9 @@ class Farm
     public $products = [];
 
     // Массив с общим количеством продукции
-    public $products_all = [];
+    public $productsAll = [];
+
+    public $collectForDays = 0;
 
     // Добавляем животных массивом
     public function createAnimals(array $animals)
@@ -19,8 +21,8 @@ class Farm
             $animalCount = $value;
             for ($i = 1; $i <= $animalCount; $i++) {
                 $this->animals["$animalType"][] = new $animalType();
-                if (!isset($this->products_all["$animalType"])) {
-                    $this->products_all["$animalType"] = 0;
+                if (!isset($this->productsAll["$animalType"])) {
+                    $this->productsAll["$animalType"] = 0;
                 }
             }
         }
@@ -37,7 +39,7 @@ class Farm
                 }
                 $this->products["$key"] = $product;
             }
-            $this->products_all["$key"] += $product;
+            $this->productsAll["$key"] += $product;
         }
     }
 }
@@ -56,7 +58,7 @@ class Barn extends Farm
     // Вывод данных о собранной продукции в консоль
     public function printProductAll()
     {
-        foreach ($this->products_all as $key => $value) {
+        foreach ($this->productsAll as $key => $value) {
             echo 'За всё время собрано продукции от ' . $key . ' : ' . $value . PHP_EOL;
         }
     }
