@@ -77,7 +77,7 @@ class Farm
 // Класс хлева
 class Barn extends Farm
 {
-
+    // Устанавливаем тип продукции
     public function setTypeProduct($key): string
     {
         return match ($key) {
