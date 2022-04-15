@@ -82,14 +82,11 @@ class Barn extends Farm
     public function printProduct()
     {
         foreach ($this->products as $key => $value) {
-            switch ($key) {
-                case "Cow":
-                    $typeFood = 'л. молока';
-                    break;
-                case "Chicken":
-                    $typeFood = 'шт. яиц';
-                    break;
-            }
+            $typeFood = match ($key) {
+                "Cow" => 'л. молока',
+                "Chicken" => 'шт. яиц',
+                default => ' pcs.',
+            };
             echo 'За ' . $this->getCurrentDays() . ' days собрано продукции от ' . $key . ': ' . $value . ' ' . $typeFood . PHP_EOL;
         }
     }
@@ -99,14 +96,11 @@ class Barn extends Farm
     {
 
         foreach ($this->productsAll as $key => $value) {
-            switch ($key) {
-                case "Cow":
-                    $typeFood = 'л. молока';
-                    break;
-                case "Chicken":
-                    $typeFood = 'шт. яиц';
-                    break;
-            }
+            $typeFood = match ($key) {
+                "Cow" => 'л. молока',
+                "Chicken" => 'шт. яиц',
+                default => ' pcs.',
+            };
             echo 'За всё время (' . $this->getAllDays() . ' days) собрано продукции от ' . $key . ': ' . $value . ' ' . $typeFood . PHP_EOL;
         }
     }
